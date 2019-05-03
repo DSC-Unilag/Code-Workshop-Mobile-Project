@@ -58,6 +58,7 @@ class HomePageContentState extends State<HomePageContent> {
         onPressed: null,
         child: Icon(Icons.create),
       ),
+      // We add a ListView as the body of the Scaffold
       body: ListView.builder(
         itemCount: noteData.length,
         itemBuilder: (BuildContext context, int index) {
@@ -67,6 +68,7 @@ class HomePageContentState extends State<HomePageContent> {
     );
   }
 
+  // This method has a private accessor thanks to the '_' prefix
   void _showSnackBar() {
     Scaffold.of(context).showSnackBar(SnackBar(content: Text("FAB pressed")));
   }
