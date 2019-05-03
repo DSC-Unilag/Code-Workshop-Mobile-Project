@@ -7,20 +7,29 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // We return a MaterialApp widget
-      // To define the theme or design language of our app
-      // Material is for Android OS, Cupertino is for iOS
-      title: "DSC Unilag", // Your title / AppName
-      theme: ThemeData(
-        // Here we set the theme of our app
-        primarySwatch: Colors.blue, // With our primaryColor as colors.blue
-        // flutter has a library of material design colors you can choose from
-        // you can also create you own color code visit http://flutter.io
-        // for further details
-      ),
-      home: HomePageContent(), // Here we set the home of our material app to be
-      // HomepageContent() which is also as Widget but this time its a stateful widget
-    );
+        // We return a MaterialApp widget
+        // To define the theme or design language of our app
+        // Material is for Android OS, Cupertino is for iOS
+        title: "DSC Unilag", // Your title / AppName
+        theme: ThemeData(
+          // Here we set the theme of our app
+          primarySwatch: Colors.blue, // With our primaryColor as colors.blue
+          // flutter has a library of material design colors you can choose from
+          // you can also create you own color code visit http://flutter.io
+          // for further details
+        ),
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("DSC Unilag"),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: null,
+            child: Icon(Icons.create),
+          ),
+          body:
+              HomePageContent(), // Here we set the home of our material app to be
+          // HomepageContent() which is also as Widget but this time its a stateful widget
+        ));
   }
 }
 
@@ -50,20 +59,11 @@ class HomePageContentState extends State<HomePageContent> {
     // The Scaffold widget defines the Properties such as AppBar,
     // FloatingActionBar, Drawer, BackgroundColor, BottomSheet, BottomNavigationBar
     // Body which is were you implement the content you want to display on screen in
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("DSC Unilag"),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        child: Icon(Icons.create),
-      ),
-      body: ListView.builder(
-        itemCount: noteData.length,
-        itemBuilder: (BuildContext context, int index) {
-          return _buildList(noteData[index]);
-        },
-      ),
+    return ListView.builder(
+      itemCount: noteData.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _buildList(noteData[index]);
+      },
     );
   }
 
@@ -73,12 +73,18 @@ class HomePageContentState extends State<HomePageContent> {
 
   Widget _buildList(Note noteData) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         _showSnackBar();
       },
       child: ListTile(
-        title: Text(noteData.title, style: TextStyle(fontSize: 18.0),),
-        subtitle: Text(noteData.content, maxLines: 3,),
+        title: Text(
+          noteData.title,
+          style: TextStyle(fontSize: 18.0),
+        ),
+        subtitle: Text(
+          noteData.content,
+          maxLines: 3,
+        ),
       ),
     );
   }
